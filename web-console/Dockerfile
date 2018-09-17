@@ -1,11 +1,11 @@
-FROM tomcat:9.0
+FROM tomcat:8.0.53-jre8
 WORKDIR /usr/local/tomcat/webapps/ROOT
 
 ENV managerServicesUrl http://product-manager:8080
 
 ENV consoleBackstageHost http://scene-init:8080
 
-ENV picturePath /opt/picture
+ENV picturePath /usr/local/tomcat/webapps/ROOT/doc/picture
 
 RUN rm -rf /usr/local/tomcat/webapps/ROOT/*
 

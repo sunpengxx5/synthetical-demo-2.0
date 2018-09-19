@@ -5,7 +5,7 @@ ENV managerServicesUrl http://product-manager:8080
 
 ENV consoleBackstageHost http://scene-init:8080
 
-ENV picturePath /usr/local/tomcat/webapps/ROOT/doc/picture
+ENV picturePath /opt/picture-vol
 
 RUN rm -rf /usr/local/tomcat/webapps/ROOT/*
 

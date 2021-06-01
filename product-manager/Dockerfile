@@ -1,4 +1,4 @@
-FROM tomcat:9.0
+FROM tomcat:8.0.53-jre8
 WORKDIR /usr/local/tomcat/webapps/ROOT
 
 # DB services
@@ -20,7 +20,7 @@ ENV redisPasswd Ddm@cloud2017
 ENV redisMaxActive 250
 
 RUN rm -rf /usr/local/tomcat/webapps/ROOT/*
-COPY product-manager/target/product-manager $WORKDIR
+COPY target/product-manager $WORKDIR
 RUN sed -i "2i /usr/local/tomcat/webapps/ROOT/initDemo.sh" /usr/local/tomcat/bin/catalina.sh
 RUN chmod 777 /usr/local/tomcat/webapps/ROOT/initDemo.sh
 

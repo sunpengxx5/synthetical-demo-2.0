@@ -1,4 +1,4 @@
-FROM tomcat:9.0
+FROM tomcat:8.0.53-jre8
 WORKDIR /usr/local/tomcat/webapps/ROOT
 
 # DB services
@@ -15,7 +15,7 @@ ENV secretKey ZGaTtLs1KwcRCOlfmzFMBJ9lqbsZJoyU3Kcgr5gh
 ENV projectId 0e964f1ae251477ebbfe8cd85e758ee6
 
 RUN rm -rf /usr/local/tomcat/webapps/ROOT/*
-COPY rush-to-buy-processor/target/rush-to-buy-processor $WORKDIR
+COPY target/rush-to-buy-processor $WORKDIR
 RUN sed -i "2i /usr/local/tomcat/webapps/ROOT/initDemo.sh" /usr/local/tomcat/bin/catalina.sh
 RUN chmod 777 /usr/local/tomcat/webapps/ROOT/initDemo.sh
 

@@ -1,0 +1,42 @@
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: init-db-fruit-52
+  namespace: default
+  labels:
+    app: init-db
+spec:
+  parallelism: 1
+  completions: 1
+  backoffLimit: 6
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: init-db
+    spec:
+      containers:
+        - name: init-db
+          image: 'swr.cn-north-1.myhuaweicloud.com/huaweicloud/fruitshop-init-db:2.14'
+          env:
+            - name: dbIP
+              value: mysql-test
+            - name: dbPort
+              value: '3306'
+            - name: dbUser
+              value: root
+            - name: dbPasswd
+              value: Huawei@12345
+            - name: dbName
+              value: fruit_db
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: OnFailure
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      imagePullSecrets:
+        - name: default-secret
+      schedulerName: default-scheduler
